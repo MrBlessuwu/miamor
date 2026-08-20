@@ -1,19 +1,31 @@
-/* Paleta romántica */
 :root {
   --rosa: #E8A9C0;
   --violeta: #6A4ACF;
   --blanco: #FFFFFF;
 }
 
-/* Fondo general */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, var(--rosa), var(--violeta));
   color: var(--blanco);
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* Botón especial reutilizable */
+header {
+  padding: 20px;
+}
+nav a {
+  margin: 0 10px;
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  color: var(--rosa);
+}
+
 .btn-romantico {
   background: var(--violeta);
   color: var(--blanco);
@@ -26,4 +38,18 @@ body {
 .btn-romantico:hover {
   transform: scale(1.1);
   background: var(--rosa);
+}
+
+/* Corazones flotando */
+.corazon {
+  position: fixed;
+  top: -2rem;
+  font-size: 2rem;
+  animation: caer 5s linear forwards;
+}
+@keyframes caer {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
