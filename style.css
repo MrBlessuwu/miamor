@@ -1,0 +1,29 @@
+/* Paleta romántica */
+:root {
+  --rosa: #E8A9C0;
+  --violeta: #6A4ACF;
+  --blanco: #FFFFFF;
+}
+
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, var(--rosa), var(--violeta));
+  color: var(--blanco);
+}
+
+/* Botón especial reutilizable */
+.btn-romantico {
+  background: var(--violeta);
+  color: var(--blanco);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.btn-romantico:hover {
+  transform: scale(1.1);
+  background: var(--rosa);
+}
