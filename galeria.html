@@ -1,44 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#8d5bd9"
+    >
+
+    <title>Momentos Random | Para Marian 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           GALERÍA
+           ===================================================== */
+
+        .gallery-page {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: min(1400px, 94%);
+
+            margin: auto;
+
+            padding-bottom: 90px;
+
+        }
+
+
+        /* =====================================================
+           ENCABEZADO
+           ===================================================== */
+
+        .gallery-intro {
+
+            min-height: 65vh;
+
+            padding:
+                80px 15px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+        }
+
+
+        .gallery-intro h1 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(4rem, 10vw, 8rem);
+
+            font-weight: 400;
+
+            line-height: .9;
+
+            text-shadow:
+                0 7px 25px
+                rgba(57, 25, 103, .3);
+
+        }
+
+
+        .gallery-intro .line {
+
+            width: 65px;
+
+            height: 2px;
+
+            margin:
+                30px auto;
+
+            background: white;
+
+        }
+
+
+        .gallery-intro p {
+
+            max-width: 700px;
+
+            font-size:
+                clamp(1rem, 2vw, 1.2rem);
+
+            line-height: 1.8;
+
+            text-shadow:
+                0 2px 8px
+                rgba(54, 23, 91, .2);
+
+        }
+
+
+        /* =====================================================
+           COLLAGE
+           ===================================================== */
+
+        .photo-grid {
+
+            columns: 4 240px;
+
+            column-gap: 18px;
+
+            width: 100%;
+
+        }
+
+
+        /* =====================================================
+           CADA FOTO
+           ===================================================== */
+
+        .photo {
+
+            position: relative;
+
+            display: inline-block;
+
+            width: 100%;
+
+            margin-bottom: 18px;
+
+            break-inside: avoid;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,.2);
+
+            border:
+                1px solid
+                rgba(255,255,255,.4);
+
+            box-shadow:
+                0 12px 30px
+                rgba(55, 25, 95, .18);
+
+            cursor: pointer;
+
+            transition:
+                transform .35s ease,
+                box-shadow .35s ease;
+
+        }
+
+
+        .photo img {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            object-fit: cover;
+
+            transition:
+                transform .5s ease,
+                filter .5s ease;
+
+        }
+
+
+        /* =====================================================
+           EFECTO VIOLETA / ROSADO
+           ===================================================== */
+
+        .photo::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(245,168,200,.25),
+                    rgba(141,91,217,.3)
+                );
+
+            opacity: 0;
+
+            transition:
+                opacity .35s ease;
+
+            pointer-events: none;
+
+        }
+
+
+        .photo:hover {
+
+            transform:
+                translateY(-6px)
+                rotate(.4deg);
+
+            box-shadow:
+                0 20px 45px
+                rgba(55, 25, 95, .28);
+
+        }
+
+
+        .photo:hover img {
+
+            transform: scale(1.04);
+
+            filter:
+                saturate(1.08);
+        }
+
+
+        .photo:hover::after {
+
+            opacity: 1;
+
+        }
+
+
+        /* =====================================================
+           NÚMERO DE FOTO
+           ===================================================== */
+
+        .photo-number {
+
+            position: absolute;
+
+            z-index: 3;
+
+            top: 10px;
+
+            right: 10px;
+
+            padding:
+                5px 9px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(57,32,96,.65);
+
+            color: white;
+
+            font-size: .7rem;
+
+            backdrop-filter:
+                blur(6px);
+
+            opacity: 0;
+
+            transition:
+                opacity .3s ease;
+
+        }
+
+
+        .photo:hover .photo-number {
+
+            opacity: 1;
+
+        }
+
+
+        /* =====================================================
+           FRASE DESPUÉS DEL COLLAGE
+           ===================================================== */
+
+        .gallery-ending {
+
+            width:
+                min(800px, 100%);
+
+            margin:
+                80px auto 0;
+
+            padding:
+                clamp(35px, 6vw, 60px);
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                rgba(57,32,96,.55);
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+            border-radius: 28px;
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                0 20px 50px
+                rgba(48,20,91,.2);
+
+        }
+
+
+        .gallery-ending h2 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(2.5rem, 6vw, 4.5rem);
+
+            font-weight: 400;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .gallery-ending p {
+
+            font-size:
+                clamp(1rem, 2vw, 1.15rem);
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           VISOR DE IMAGEN
+           ===================================================== */
+
+        .lightbox {
+
+            position: fixed;
+
+            z-index: 100;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                rgba(30,15,50,.88);
+
+            backdrop-filter:
+                blur(12px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .3s ease,
+                visibility .3s ease;
+
+        }
+
+
+        .lightbox.open {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+        .lightbox img {
+
+            max-width: 94vw;
+
+            max-height: 88vh;
+
+            object-fit: contain;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.5);
+
+        }
+
+
+        .close-lightbox {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 25px;
+
+            width: 45px;
+
+            height: 45px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.18);
+
+            color: white;
+
+            font-size: 1.6rem;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           TABLET
+           ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .photo-grid {
+
+                columns: 3 200px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR
+           ===================================================== */
+
+        @media (max-width: 650px) {
+
+            .gallery-page {
+
+                width: 96%;
+
+            }
+
+
+            .gallery-intro {
+
+                min-height: 60vh;
+
+                padding:
+                    60px 10px;
+
+            }
+
+
+            .gallery-intro h1 {
+
+                font-size:
+                    clamp(3.5rem, 15vw, 5rem);
+
+            }
+
+
+            .gallery-intro p {
+
+                font-size: .98rem;
+
+            }
+
+
+            .photo-grid {
+
+                columns: 2 130px;
+
+                column-gap: 10px;
+
+            }
+
+
+            .photo {
+
+                margin-bottom: 10px;
+
+                border-radius: 12px;
+
+            }
+
+
+            .gallery-ending {
+
+                margin-top: 60px;
+
+                border-radius: 22px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TELÉFONOS PEQUEÑOS
+           ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .photo-grid {
+
+                columns: 2 110px;
+
+            }
+
+        }
+
+
+    </style>
 
 </head>
-<body>
-<div class="site-shell">
-  <div class="browser-dots"><span></span><span></span><span></span></div>
-  <main class="page-card">
-    <header class="nav">
-  <a class="logo" href="index.html">M</a>
-  <nav class="nav-links">
-    <a href="index.html">INICIO</a>
-    <a href="historia.html">HISTORIA</a>
-    <a href="galeria.html">GALERÍA</a>
-    <a href="juego.html">JUEGO</a>
-    <a href="bromitas.html">BROMITAS</a>
-    <a href="atajos.html">ATAJOS</a>
-    <a href="contacto.html">CONTACTO</a>
-  </nav>
-</header>
-    
-<section class="section">
-  <div class="section-title"><div class="small">Capítulo 02</div><h1>Nuestra galería</h1><p>Reemplaza estas tarjetas por tus fotos reales en <code>assets/img</code>.</p></div>
-  <div class="filters">
-    <button class="filter active" data-filter="all">Todo</button>
-    <button class="filter" data-filter="recuerdo">Recuerdos</button>
-    <button class="filter" data-filter="divertido">Divertido</button>
-    <button class="filter" data-filter="futuro">Futuro</button>
-  </div>
-  <div class="gallery">
-    <article class="photo" data-category="recuerdo"><div class="photo-content"><h3>📸 Nuestro primer recuerdo</h3><p>Coloca aquí una foto especial.</p></div></article>
-    <article class="photo" data-category="divertido"><div class="photo-content"><h3>😂 Momento de locura</h3><p>La foto que demuestra que no somos normales.</p></div></article>
-    <article class="photo" data-category="recuerdo"><div class="photo-content"><h3>💜 Un día bonito</h3><p>Un recuerdo que merece repetirse.</p></div></article>
-    <article class="photo" data-category="divertido"><div class="photo-content"><h3>🫠 Evidencia incriminatoria</h3><p>Esta sección necesita contexto... o no.</p></div></article>
-    <article class="photo" data-category="futuro"><div class="photo-content"><h3>🌎 Próxima aventura</h3><p>Espacio reservado para una futura foto.</p></div></article>
-    <article class="photo" data-category="futuro"><div class="photo-content"><h3>✨ Más capítulos</h3><p>Porque todavía faltan demasiados recuerdos.</p></div></article>
-  </div>
-</section>
 
-  </main>
-  <footer class="footer">Hecho con cariño, bromas internas y demasiados corazones. 💖</footer>
-</div>
-<div class="toast"></div>
-<script src="script.js"></script>
+
+<body>
+
+
+    <!-- =====================================================
+         CORAZONES
+         ===================================================== -->
+
+    <div
+        class="heart-background"
+        aria-hidden="true"
+    >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-1"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-2"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-3"
+        >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-4"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-5"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-6"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            M
+        </a>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+        >
+
+            <a href="index.html">
+                INICIO
+            </a>
+
+            <a href="historia.html">
+                HISTORIA
+            </a>
+
+            <a
+                href="galeria.html"
+                class="active"
+            >
+                GALERÍA
+            </a>
+
+            <a href="juego.html">
+                JUEGO
+            </a>
+
+            <a href="bromitas.html">
+                BROMITAS
+            </a>
+
+            <a href="atajos.html">
+                ATAJOS
+            </a>
+
+            <a href="contacto.html">
+                CONTACTO
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         GALERÍA
+         ===================================================== -->
+
+    <main class="gallery-page">
+
+
+        <!-- INTRO -->
+
+        <section class="gallery-intro">
+
+            <p class="tiny-title">
+                CAPÍTULO 02 · RECUERDOS
+            </p>
+
+
+            <h1>
+                Momentos<br>
+                random
+            </h1>
+
+
+            <div class="line"></div>
+
+
+            <p>
+                Porque no todos nuestros recuerdos
+                necesitan una razón para existir.
+                Algunos simplemente pasan...
+                y terminan siendo nuestros favoritos. 💗
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             COLLAGE
+             ================================================= -->
+
+        <section class="photo-grid">
+
+
+            <!-- FOTO 1 -->
+
+            <div class="photo">
+
+                <img
+                    src="assets/img/imagen1.jpeg"
+                    alt="Momento random 1"
+                    loading="lazy"
+                >
+
+                <span class="photo-number">
+                    1
+                </span>
+
+            </div>
+
+
+            <!-- FOTOS 2 - 37 -->
+
+            <script>
+
+                /*
+                 * Generamos automáticamente las otras 36 imágenes.
+                 *
+                 * Windows normalmente crea:
+                 *
+                 * imagen1.jpeg
+                 * imagen1 (1).jpeg
+                 * imagen1 (2).jpeg
+                 * ...
+                 * imagen1 (36).jpeg
+                 */
+
+                for (
+                    let i = 1;
+                    i <= 36;
+                    i++
+                ) {
+
+                    const photo =
+                        document.createElement("div");
+
+                    photo.className =
+                        "photo";
+
+
+                    const image =
+                        document.createElement("img");
+
+
+                    image.src =
+                        `assets/img/imagen1 (${i}).jpeg`;
+
+
+                    image.alt =
+                        `Momento random ${i + 1}`;
+
+
+                    image.loading =
+                        "lazy";
+
+
+                    const number =
+                        document.createElement("span");
+
+
+                    number.className =
+                        "photo-number";
+
+
+                    number.textContent =
+                        i + 1;
+
+
+                    photo.appendChild(image);
+
+                    photo.appendChild(number);
+
+
+                    document
+                        .querySelector(".photo-grid")
+                        .appendChild(photo);
+
+                }
+
+            </script>
+
+
+        </section>
+
+
+        <!-- =================================================
+             MENSAJE FINAL
+             ================================================= -->
+
+        <section class="gallery-ending">
+
+            <h2>
+                Y pensar que todo esto
+                empezó de la nada... 💜
+            </h2>
+
+
+            <p>
+                37 recuerdos random,
+                un montón de momentos inesperados
+                y todavía quedan muchos más por guardar.
+            </p>
+
+
+            <p>
+                No importa si fue un día bonito,
+                un día raro, un día lluvioso
+                o simplemente un día cualquiera.
+            </p>
+
+
+            <p>
+                Si fue contigo,
+                ya tiene un lugar aquí. 💗
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         VISOR DE FOTOS
+         ===================================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+    >
+
+        <button
+            class="close-lightbox"
+            id="closeLightbox"
+            aria-label="Cerrar imagen"
+        >
+            ×
+        </button>
+
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Imagen ampliada"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           MENÚ
+           ================================================= */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuButton.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+                menuButton.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "open"
+                        );
+
+                        menuButton.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =================================================
+           VISOR DE IMÁGENES
+           ================================================= */
+
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
+        const lightboxImage =
+            document.getElementById(
+                "lightboxImage"
+            );
+
+
+        const closeLightbox =
+            document.getElementById(
+                "closeLightbox"
+            );
+
+
+        function openImage(image) {
+
+            lightboxImage.src =
+                image.src;
+
+            lightboxImage.alt =
+                image.alt;
+
+            lightbox.classList.add(
+                "open"
+            );
+
+        }
+
+
+        function closeImage() {
+
+            lightbox.classList.remove(
+                "open"
+            );
+
+        }
+
+
+        document
+            .querySelectorAll(".photo img")
+            .forEach(image => {
+
+                image.addEventListener(
+                    "click",
+                    () => {
+
+                        openImage(image);
+
+                    }
+                );
+
+            });
+
+
+        closeLightbox.addEventListener(
+            "click",
+            closeImage
+        );
+
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+
+        /* Cerrar con ESC */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+
 </body>
+
 </html>
