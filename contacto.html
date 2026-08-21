@@ -1,46 +1,1305 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#7650d8">
-<title>Contacto | Para Marian 💜</title>
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#8d5bd9"
+    >
+
+    <title>Para Marian, con amor 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           PÁGINA FINAL
+           ===================================================== */
+
+        .letter-page {
+
+            position: relative;
+
+            z-index: 2;
+
+            width:
+                min(900px, 94%);
+
+            margin:
+                auto;
+
+            padding-bottom:
+                90px;
+
+        }
+
+
+        /* =====================================================
+           PORTADA
+           ===================================================== */
+
+        .letter-hero {
+
+            min-height:
+                72vh;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-align:
+                center;
+
+            color:
+                white;
+
+            padding:
+                70px 15px 50px;
+
+        }
+
+
+        .letter-heart {
+
+            font-size:
+                4rem;
+
+            margin-bottom:
+                25px;
+
+            animation:
+                heartBeat 2.2s ease-in-out infinite;
+
+            filter:
+                drop-shadow(
+                    0 10px 20px
+                    rgba(50,20,90,.25)
+                );
+
+        }
+
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+
+                transform:
+                    scale(1);
+
+            }
+
+            15% {
+
+                transform:
+                    scale(1.12);
+
+            }
+
+            30% {
+
+                transform:
+                    scale(1);
+
+            }
+
+            45% {
+
+                transform:
+                    scale(1.08);
+
+            }
+
+            60% {
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        .letter-hero h1 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(4rem, 11vw, 8rem);
+
+            font-weight:
+                400;
+
+            line-height:
+                .9;
+
+            text-shadow:
+                0 8px 30px
+                rgba(45,18,80,.3);
+
+        }
+
+
+        .letter-hero p {
+
+            max-width:
+                650px;
+
+            margin-top:
+                28px;
+
+            line-height:
+                1.8;
+
+            font-size:
+                clamp(1rem, 2.5vw, 1.15rem);
+
+            opacity:
+                .95;
+
+        }
+
+
+        .scroll-hint {
+
+            margin-top:
+                45px;
+
+            font-size:
+                .8rem;
+
+            letter-spacing:
+                .15em;
+
+            opacity:
+                .7;
+
+            animation:
+                floatingHint 2.5s ease-in-out infinite;
+
+        }
+
+
+        @keyframes floatingHint {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(7px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CARTA
+           ===================================================== */
+
+        .letter {
+
+            position:
+                relative;
+
+            padding:
+                clamp(30px, 7vw, 75px);
+
+            color:
+                #43265e;
+
+            background:
+                rgba(255,250,253,.9);
+
+            border:
+                1px solid
+                rgba(255,255,255,.7);
+
+            border-radius:
+                30px;
+
+            box-shadow:
+                0 25px 65px
+                rgba(60,28,105,.18);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .letter::before {
+
+            content:
+                "♡";
+
+            position:
+                absolute;
+
+            top:
+                18px;
+
+            right:
+                25px;
+
+            font-size:
+                4rem;
+
+            color:
+                rgba(141,91,217,.08);
+
+            transform:
+                rotate(12deg);
+
+        }
+
+
+        .letter-date {
+
+            margin-bottom:
+                35px;
+
+            color:
+                #8d5bd9;
+
+            font-size:
+                .85rem;
+
+            letter-spacing:
+                .12em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .letter h2 {
+
+            margin-bottom:
+                30px;
+
+            color:
+                #633f91;
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(2.8rem, 7vw, 4.8rem);
+
+            font-weight:
+                400;
+
+            line-height:
+                1;
+
+        }
+
+
+        .letter p {
+
+            margin:
+                0 0 24px;
+
+            font-size:
+                clamp(1rem, 2vw, 1.1rem);
+
+            line-height:
+                2;
+
+        }
+
+
+        .letter .highlight {
+
+            color:
+                #7546a8;
+
+            font-weight:
+                bold;
+
+        }
+
+
+        /* =====================================================
+           FRASE CENTRAL
+           ===================================================== */
+
+        .heart-message {
+
+            margin:
+                45px 0;
+
+            padding:
+                30px 20px;
+
+            text-align:
+                center;
+
+            border-top:
+                1px solid
+                rgba(141,91,217,.18);
+
+            border-bottom:
+                1px solid
+                rgba(141,91,217,.18);
+
+        }
+
+
+        .heart-message .big-heart {
+
+            display:
+                block;
+
+            margin-bottom:
+                12px;
+
+            font-size:
+                2.2rem;
+
+        }
+
+
+        .heart-message p {
+
+            max-width:
+                600px;
+
+            margin:
+                auto;
+
+            color:
+                #633f91;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(1.15rem, 3vw, 1.45rem);
+
+            font-style:
+                italic;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           FIRMA
+           ===================================================== */
+
+        .signature {
+
+            margin-top:
+                50px;
+
+            text-align:
+                right;
+
+        }
+
+
+        .signature-small {
+
+            display:
+                block;
+
+            margin-bottom:
+                5px;
+
+            font-size:
+                .9rem;
+
+            color:
+                #7b638c;
+
+        }
+
+
+        .signature-name {
+
+            color:
+                #633f91;
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(3rem, 8vw, 5rem);
+
+            line-height:
+                1;
+
+        }
+
+
+        .nicknames {
+
+            margin-top:
+                8px;
+
+            color:
+                #8d5bd9;
+
+            font-size:
+                .95rem;
+
+        }
+
+
+        /* =====================================================
+           ÚLTIMA FRASE
+           ===================================================== */
+
+        .last-message {
+
+            margin-top:
+                25px;
+
+            padding:
+                clamp(35px, 6vw, 60px) 25px;
+
+            text-align:
+                center;
+
+            color:
+                white;
+
+            border-radius:
+                30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(68,38,95,.82),
+                    rgba(141,91,217,.72)
+                );
+
+            box-shadow:
+                0 25px 60px
+                rgba(50,20,90,.22);
+
+        }
+
+
+        .last-message .last-heart {
+
+            display:
+                block;
+
+            margin-bottom:
+                20px;
+
+            font-size:
+                2.4rem;
+
+        }
+
+
+        .last-message h2 {
+
+            margin-bottom:
+                20px;
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(2.8rem, 7vw, 5rem);
+
+            font-weight:
+                400;
+
+        }
+
+
+        .last-message p {
+
+            max-width:
+                650px;
+
+            margin:
+                auto;
+
+            line-height:
+                1.9;
+
+        }
+
+
+        .return-home {
+
+            display:
+                inline-block;
+
+            margin-top:
+                30px;
+
+            padding:
+                13px 25px;
+
+            color:
+                #613a88;
+
+            background:
+                #fff;
+
+            border-radius:
+                50px;
+
+            text-decoration:
+                none;
+
+            font-weight:
+                bold;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        .return-home:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(30,10,60,.2);
+
+        }
+
+
+        /* =====================================================
+           CORAZONES PEQUEÑOS DE LA CARTA
+           ===================================================== */
+
+        .letter-decoration {
+
+            position:
+                absolute;
+
+            color:
+                rgba(141,91,217,.15);
+
+            pointer-events:
+                none;
+
+            animation:
+                tinyFloat 4s ease-in-out infinite;
+
+        }
+
+
+        .decoration-one {
+
+            left:
+                5%;
+
+            top:
+                25%;
+
+            font-size:
+                2rem;
+
+        }
+
+
+        .decoration-two {
+
+            right:
+                7%;
+
+            top:
+                55%;
+
+            font-size:
+                1.5rem;
+
+            animation-delay:
+                1s;
+
+        }
+
+
+        .decoration-three {
+
+            left:
+                12%;
+
+            bottom:
+                12%;
+
+            font-size:
+                1.2rem;
+
+            animation-delay:
+                2s;
+
+        }
+
+
+        @keyframes tinyFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-10px)
+                    rotate(8deg);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .letter-page {
+
+                width:
+                    96%;
+
+            }
+
+
+            .letter-hero {
+
+                min-height:
+                    60vh;
+
+                padding:
+                    55px 10px 40px;
+
+            }
+
+
+            .letter-hero h1 {
+
+                font-size:
+                    clamp(3.8rem, 16vw, 5.5rem);
+
+            }
+
+
+            .letter {
+
+                padding:
+                    30px 24px;
+
+                border-radius:
+                    23px;
+
+            }
+
+
+            .letter h2 {
+
+                font-size:
+                    3.3rem;
+
+            }
+
+
+            .signature {
+
+                text-align:
+                    center;
+
+            }
+
+
+            .signature-name {
+
+                font-size:
+                    4rem;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCCIÓN DE MOVIMIENTO
+           ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .letter-heart,
+            .scroll-hint,
+            .letter-decoration {
+
+                animation:
+                    none;
+
+            }
+
+        }
+
+    </style>
 
 </head>
-<body>
-<div class="site-shell">
-  <div class="browser-dots"><span></span><span></span><span></span></div>
-  <main class="page-card">
-    <header class="nav">
-  <a class="logo" href="index.html">M</a>
-  <nav class="nav-links">
-    <a href="index.html">INICIO</a>
-    <a href="historia.html">HISTORIA</a>
-    <a href="galeria.html">GALERÍA</a>
-    <a href="juego.html">JUEGO</a>
-    <a href="bromitas.html">BROMITAS</a>
-    <a href="atajos.html">ATAJOS</a>
-    <a href="contacto.html">CONTACTO</a>
-  </nav>
-</header>
-    
-<section class="section">
-  <div class="section-title"><div class="small">Capítulo final... por ahora</div><h1>Para Marian</h1></div>
-  <div class="glass" style="max-width:800px;margin:auto;text-align:center">
-    <p class="quote">“Gracias por formar parte de mis días, por las risas, por las locuras y por todos esos pequeños momentos que terminan convirtiéndose en recuerdos enormes.”</p>
-    <div class="divider" style="background:var(--violeta);margin:30px auto"></div>
-    <p style="line-height:1.8">Esta página puede crecer con nosotros: más fotos, más bromas, más historias y más capítulos.</p>
-    <p style="font-family:'Brush Script MT','Segoe Script',cursive;font-size:3rem;margin-top:25px;color:var(--violeta-oscuro)">Con cariño, Roger 💜</p>
-    <p style="margin-top:12px;font-weight:bold;letter-spacing:.15em">14 · 02 · 2020 → ∞</p>
-    <a class="btn dark" href="index.html" style="margin-top:25px">Volver al inicio</a>
-  </div>
-</section>
 
-  </main>
-  <footer class="footer">Hecho con cariño, bromas internas y demasiados corazones. 💖</footer>
-</div>
-<div class="toast"></div>
-<script src="script.js"></script>
+
+<body>
+
+
+    <!-- =====================================================
+         CORAZONES DEL FONDO
+         ===================================================== -->
+
+    <div
+        class="heart-background"
+        aria-hidden="true"
+    >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-1"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-2"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-3"
+        >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-4"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-5"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-6"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
+
+    <header class="navbar">
+
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            M
+        </a>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+        >
+
+            <a href="index.html">
+                INICIO
+            </a>
+
+
+            <a href="historia.html">
+                HISTORIA
+            </a>
+
+
+            <a href="galeria.html">
+                GALERÍA
+            </a>
+
+
+            <a href="juego.html">
+                JUEGO
+            </a>
+
+
+            <a href="bromitas.html">
+                BROMITAS
+            </a>
+
+
+            <a href="atajos.html">
+                ATAJOS
+            </a>
+
+
+            <a
+                href="contacto.html"
+                class="active"
+            >
+                CONTACTO
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO
+         ===================================================== -->
+
+    <main class="letter-page">
+
+
+        <!-- =================================================
+             INTRO
+             ================================================= -->
+
+        <section class="letter-hero">
+
+
+            <div class="letter-heart">
+                💗
+            </div>
+
+
+            <p>
+                ÚLTIMA PÁGINA · SIN BROMAS
+            </p>
+
+
+            <h1>
+                Para Marian
+            </h1>
+
+
+            <p>
+                Después de todas las tonterías,
+                los recuerdos, las fotos y los secretos,
+                queda algo que quería decirte sin esconderlo
+                detrás de ninguna broma.
+            </p>
+
+
+            <span class="scroll-hint">
+                ↓ LEE DESPACIO ↓
+            </span>
+
+
+        </section>
+
+
+        <!-- =================================================
+             CARTA
+             ================================================= -->
+
+        <article class="letter">
+
+
+            <span class="letter-decoration decoration-one">
+                ♡
+            </span>
+
+
+            <span class="letter-decoration decoration-two">
+                ♡
+            </span>
+
+
+            <span class="letter-decoration decoration-three">
+                ♡
+            </span>
+
+
+            <div class="letter-date">
+                Hecho con amor, para ti
+            </div>
+
+
+            <h2>
+                Mi niña preciosa...
+            </h2>
+
+
+            <p>
+                Quizá cuando estés leyendo esto las cosas
+                no sean exactamente como eran cuando empecé
+                a hacer esta página.
+            </p>
+
+
+            <p>
+                La verdad es que la hice
+                <span class="highlight">
+                    antes de nuestros disgustos
+                </span>.
+            </p>
+
+
+            <p>
+                La hice simplemente porque quería darte
+                algo especial. Algo que fuera solamente
+                tuyo. Un lugar donde pudiera guardar
+                un poquito de nosotros.
+            </p>
+
+
+            <p>
+                Y aunque ahora no pueda verte tan seguido
+                como quisiera, hay algo que me sigue
+                sorprendiendo.
+            </p>
+
+
+            <p>
+                Porque mi corazón puede extrañarte
+                como si no te hubiera visto en
+                <span class="highlight">
+                    años o meses
+                </span>,
+                incluso cuando quizá no ha pasado
+                tanto tiempo.
+            </p>
+
+
+            <div class="heart-message">
+
+
+                <span class="big-heart">
+                    ❤️
+                </span>
+
+
+                <p>
+                    Supongo que así de mucho puede
+                    llegar a querer alguien a otra persona.
+                </p>
+
+
+            </div>
+
+
+            <p>
+                Te quiero, Marian.
+            </p>
+
+
+            <p>
+                Te quiero por tus lentes, por tu sonrisa,
+                por tu forma de ser, por cómo quieres
+                a los animales, por todas esas cosas
+                pequeñas que probablemente tú ni siquiera
+                consideras importantes.
+            </p>
+
+
+            <p>
+                Te quiero por los momentos bonitos,
+                por las risas, por las tonterías,
+                por los recuerdos que quedaron guardados
+                en estas páginas.
+            </p>
+
+
+            <p>
+                Y también te quiero aunque ahora las cosas
+                sean un poquito más complicadas.
+            </p>
+
+
+            <p>
+                No hice esto para pedirte nada.
+            </p>
+
+
+            <p>
+                No quiero que estas palabras sean una
+                obligación, ni que sientas que tienes que
+                responder de determinada manera.
+            </p>
+
+
+            <p>
+                Solo quería que supieras algo:
+            </p>
+
+
+            <div class="heart-message">
+
+
+                <span class="big-heart">
+                    💜
+                </span>
+
+
+                <p>
+                    Hubo alguien que pensó en ti,
+                    que te extrañó, que quiso hacerte
+                    sonreír y que te ama muchísimo.
+                </p>
+
+
+            </div>
+
+
+            <p>
+                Y si alguna vez te preguntas si todo
+                esto significó algo para mí...
+            </p>
+
+
+            <p>
+                Sí.
+            </p>
+
+
+            <p>
+                Significó muchísimo.
+            </p>
+
+
+            <p>
+                Cada foto, cada recuerdo, cada página
+                y cada pequeña tontería que puse aquí
+                nació porque quería darte un regalo
+                que no pudieras encontrar en una tienda.
+            </p>
+
+
+            <p>
+                Un pedacito de mi corazón.
+            </p>
+
+
+            <div class="signature">
+
+
+                <span class="signature-small">
+                    Con todo mi amor,
+                </span>
+
+
+                <div class="signature-name">
+                    Roger
+                </div>
+
+
+                <div class="nicknames">
+                    tu Negrito · tu Chocolatito 🤎
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+        <!-- =================================================
+             ÚLTIMO MENSAJE
+             ================================================= -->
+
+        <section class="last-message">
+
+
+            <span class="last-heart">
+                💗
+            </span>
+
+
+            <h2>
+                Y una última cosa...
+            </h2>
+
+
+            <p>
+                Ojalá algún día podamos volver a mirarnos
+                y sentir que, aunque hayan pasado días,
+                semanas o lo que tenga que pasar,
+                nuestro cariño sigue encontrando
+                el camino de regreso.
+            </p>
+
+
+            <br>
+
+
+            <p>
+                Porque yo, por mi parte,
+                todavía te llevo conmigo.
+            </p>
+
+
+            <br>
+
+
+            <p>
+                <strong>
+                    Te amo, Marian.
+                </strong>
+            </p>
+
+
+            <a
+                href="index.html"
+                class="return-home"
+            >
+                Volver al principio 💜
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           MENÚ RESPONSIVE
+           ================================================= */
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        menuButton.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+                menuButton.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                ".nav-links a"
+            )
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "open"
+                        );
+
+                        menuButton.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+            });
+
+
+    </script>
+
+
 </body>
+
 </html>
