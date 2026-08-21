@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -16,10 +17,12 @@
 
     <title>Momentos Random | Para Marian 💜</title>
 
+    <!-- CSS PRINCIPAL -->
     <link
         rel="stylesheet"
         href="style.css"
     >
+
 
     <style>
 
@@ -50,8 +53,7 @@
 
             min-height: 65vh;
 
-            padding:
-                80px 15px;
+            padding: 80px 15px;
 
             display: flex;
 
@@ -95,8 +97,7 @@
 
             height: 2px;
 
-            margin:
-                30px auto;
+            margin: 30px auto;
 
             background: white;
 
@@ -155,11 +156,11 @@
             border-radius: 18px;
 
             background:
-                rgba(255,255,255,.2);
+                rgba(255, 255, 255, .2);
 
             border:
                 1px solid
-                rgba(255,255,255,.4);
+                rgba(255, 255, 255, .4);
 
             box-shadow:
                 0 12px 30px
@@ -192,7 +193,7 @@
 
 
         /* =====================================================
-           EFECTO VIOLETA / ROSADO
+           EFECTO ROSA - VIOLETA
            ===================================================== */
 
         .photo::after {
@@ -206,8 +207,8 @@
             background:
                 linear-gradient(
                     135deg,
-                    rgba(245,168,200,.25),
-                    rgba(141,91,217,.3)
+                    rgba(245, 168, 200, .25),
+                    rgba(141, 91, 217, .3)
                 );
 
             opacity: 0;
@@ -235,10 +236,12 @@
 
         .photo:hover img {
 
-            transform: scale(1.04);
+            transform:
+                scale(1.04);
 
             filter:
                 saturate(1.08);
+
         }
 
 
@@ -269,7 +272,7 @@
             border-radius: 20px;
 
             background:
-                rgba(57,32,96,.65);
+                rgba(57, 32, 96, .65);
 
             color: white;
 
@@ -294,7 +297,7 @@
 
 
         /* =====================================================
-           FRASE DESPUÉS DEL COLLAGE
+           MENSAJE FINAL
            ===================================================== */
 
         .gallery-ending {
@@ -313,11 +316,11 @@
             color: white;
 
             background:
-                rgba(57,32,96,.55);
+                rgba(57, 32, 96, .55);
 
             border:
                 1px solid
-                rgba(255,255,255,.25);
+                rgba(255, 255, 255, .25);
 
             border-radius: 28px;
 
@@ -326,7 +329,7 @@
 
             box-shadow:
                 0 20px 50px
-                rgba(48,20,91,.2);
+                rgba(48, 20, 91, .2);
 
         }
 
@@ -379,7 +382,7 @@
             padding: 25px;
 
             background:
-                rgba(30,15,50,.88);
+                rgba(30, 15, 50, .88);
 
             backdrop-filter:
                 blur(12px);
@@ -416,10 +419,14 @@
 
             box-shadow:
                 0 25px 70px
-                rgba(0,0,0,.5);
+                rgba(0, 0, 0, .5);
 
         }
 
+
+        /* =====================================================
+           BOTÓN CERRAR
+           ===================================================== */
 
         .close-lightbox {
 
@@ -438,13 +445,24 @@
             border-radius: 50%;
 
             background:
-                rgba(255,255,255,.18);
+                rgba(255, 255, 255, .18);
 
             color: white;
 
             font-size: 1.6rem;
 
             cursor: pointer;
+
+        }
+
+
+        .close-lightbox:hover {
+
+            background:
+                rgba(255, 255, 255, .3);
+
+            transform:
+                scale(1.08);
 
         }
 
@@ -532,7 +550,7 @@
 
 
         /* =====================================================
-           TELÉFONOS PEQUEÑOS
+           CELULAR PEQUEÑO
            ===================================================== */
 
         @media (max-width: 380px) {
@@ -545,7 +563,6 @@
 
         }
 
-
     </style>
 
 </head>
@@ -555,7 +572,7 @@
 
 
     <!-- =====================================================
-         CORAZONES
+         CORAZONES DEL FONDO
          ===================================================== -->
 
     <div
@@ -608,6 +625,7 @@
 
     <header class="navbar">
 
+
         <a
             href="index.html"
             class="logo"
@@ -634,9 +652,11 @@
                 INICIO
             </a>
 
+
             <a href="historia.html">
                 HISTORIA
             </a>
+
 
             <a
                 href="galeria.html"
@@ -645,17 +665,21 @@
                 GALERÍA
             </a>
 
+
             <a href="juego.html">
                 JUEGO
             </a>
+
 
             <a href="bromitas.html">
                 BROMITAS
             </a>
 
+
             <a href="atajos.html">
                 ATAJOS
             </a>
+
 
             <a href="contacto.html">
                 CONTACTO
@@ -667,15 +691,18 @@
 
 
     <!-- =====================================================
-         GALERÍA
+         CONTENIDO
          ===================================================== -->
 
     <main class="gallery-page">
 
 
-        <!-- INTRO -->
+        <!-- =================================================
+             INTRODUCCIÓN
+             ================================================= -->
 
         <section class="gallery-intro">
+
 
             <p class="tiny-title">
                 CAPÍTULO 02 · RECUERDOS
@@ -698,6 +725,7 @@
                 y terminan siendo nuestros favoritos. 💗
             </p>
 
+
         </section>
 
 
@@ -705,96 +733,15 @@
              COLLAGE
              ================================================= -->
 
-        <section class="photo-grid">
+        <section
+            class="photo-grid"
+            id="photoGrid"
+        >
 
-
-            <!-- FOTO 1 -->
-
-            <div class="photo">
-
-                <img
-                    src="assets/img/imagen1.jpeg"
-                    alt="Momento random 1"
-                    loading="lazy"
-                >
-
-                <span class="photo-number">
-                    1
-                </span>
-
-            </div>
-
-
-            <!-- FOTOS 2 - 37 -->
-
-            <script>
-
-                /*
-                 * Generamos automáticamente las otras 36 imágenes.
-                 *
-                 * Windows normalmente crea:
-                 *
-                 * imagen1.jpeg
-                 * imagen1 (1).jpeg
-                 * imagen1 (2).jpeg
-                 * ...
-                 * imagen1 (36).jpeg
-                 */
-
-for (
-    let i = 1;
-    i <= 37;
-    i++
-){
-
-                    const photo =
-                        document.createElement("div");
-
-                    photo.className =
-                        "photo";
-
-
-                    const image =
-                        document.createElement("img");
-
-
-                    image.src =
-                        `assets/img/imagen1 (${i}).jpeg`;
-
-
-                   image.alt =
-    `Momento random ${i}`;
-
-
-                    image.loading =
-                        "lazy";
-
-
-                    const number =
-                        document.createElement("span");
-
-
-                    number.className =
-                        "photo-number";
-
-
-                   number.textContent =
-    i;
-
-
-                    photo.appendChild(image);
-
-                    photo.appendChild(number);
-
-
-                    document
-                        .querySelector(".photo-grid")
-                        .appendChild(photo);
-
-                }
-
-            </script>
-
+            <!--
+                JavaScript colocará aquí
+                las 37 imágenes automáticamente.
+            -->
 
         </section>
 
@@ -804,6 +751,7 @@ for (
              ================================================= -->
 
         <section class="gallery-ending">
+
 
             <h2>
                 Y pensar que todo esto
@@ -830,6 +778,7 @@ for (
                 ya tiene un lugar aquí. 💗
             </p>
 
+
         </section>
 
 
@@ -837,13 +786,14 @@ for (
 
 
     <!-- =====================================================
-         VISOR DE FOTOS
+         VISOR DE IMAGEN
          ===================================================== -->
 
     <div
         class="lightbox"
         id="lightbox"
     >
+
 
         <button
             class="close-lightbox"
@@ -860,6 +810,7 @@ for (
             alt="Imagen ampliada"
         >
 
+
     </div>
 
 
@@ -871,15 +822,19 @@ for (
 
 
         /* =================================================
-           MENÚ
+           MENÚ PARA CELULAR
            ================================================= */
 
         const menuButton =
-            document.getElementById("menuButton");
+            document.getElementById(
+                "menuButton"
+            );
 
 
         const navLinks =
-            document.getElementById("navLinks");
+            document.getElementById(
+                "navLinks"
+            );
 
 
         menuButton.addEventListener(
@@ -898,8 +853,12 @@ for (
         );
 
 
+        /* Cerrar menú al seleccionar una página */
+
         document
-            .querySelectorAll(".nav-links a")
+            .querySelectorAll(
+                ".nav-links a"
+            )
             .forEach(link => {
 
                 link.addEventListener(
@@ -921,7 +880,99 @@ for (
 
 
         /* =================================================
-           VISOR DE IMÁGENES
+           CREAR LAS 37 FOTOS
+           ================================================= */
+
+        const photoGrid =
+            document.getElementById(
+                "photoGrid"
+            );
+
+
+        for (
+            let i = 1;
+            i <= 37;
+            i++
+        ) {
+
+
+            /* Crear contenedor */
+
+            const photo =
+                document.createElement(
+                    "div"
+                );
+
+
+            photo.className =
+                "photo";
+
+
+            /* Crear imagen */
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.src =
+                `assets/img/imagen1 (${i}).jpeg`;
+
+
+            image.alt =
+                `Momento random ${i}`;
+
+
+            /*
+             * Lazy loading hace que el navegador
+             * cargue las imágenes conforme se necesitan.
+             *
+             * Esto ayuda muchísimo cuando hay
+             * 37 fotos y se abre desde un celular.
+             */
+
+            image.loading =
+                "lazy";
+
+
+            /* Crear número */
+
+            const number =
+                document.createElement(
+                    "span"
+                );
+
+
+            number.className =
+                "photo-number";
+
+
+            number.textContent =
+                i;
+
+
+            /* Meter elementos */
+
+            photo.appendChild(
+                image
+            );
+
+
+            photo.appendChild(
+                number
+            );
+
+
+            photoGrid.appendChild(
+                photo
+            );
+
+        }
+
+
+        /* =================================================
+           VISOR DE FOTOS
            ================================================= */
 
         const lightbox =
@@ -942,45 +993,83 @@ for (
             );
 
 
+        /* Abrir imagen */
+
         function openImage(image) {
+
 
             lightboxImage.src =
                 image.src;
 
+
             lightboxImage.alt =
                 image.alt;
+
 
             lightbox.classList.add(
                 "open"
             );
 
+
+            /*
+             * Evita que el fondo
+             * siga desplazándose
+             * mientras vemos la foto.
+             */
+
+            document.body.style.overflow =
+                "hidden";
+
         }
 
 
+        /* Cerrar imagen */
+
         function closeImage() {
+
 
             lightbox.classList.remove(
                 "open"
             );
 
-        }
 
-document.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target.matches(".photo img")
-        ) {
-
-            openImage(event.target);
+            document.body.style.overflow =
+                "";
 
         }
 
-    }
-);
-       
 
+        /*
+         * EVENT DELEGATION
+         *
+         * Como las imágenes fueron creadas
+         * mediante JavaScript, usamos el
+         * documento para detectar cuál fue
+         * seleccionada.
+         */
+
+        document.addEventListener(
+            "click",
+            event => {
+
+
+                if (
+                    event.target.matches(
+                        ".photo img"
+                    )
+                ) {
+
+                    openImage(
+                        event.target
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* Botón X */
 
         closeLightbox.addEventListener(
             "click",
@@ -988,12 +1077,16 @@ document.addEventListener(
         );
 
 
+        /* Cerrar tocando fuera de la foto */
+
         lightbox.addEventListener(
             "click",
             event => {
 
+
                 if (
-                    event.target === lightbox
+                    event.target ===
+                    lightbox
                 ) {
 
                     closeImage();
@@ -1010,8 +1103,10 @@ document.addEventListener(
             "keydown",
             event => {
 
+
                 if (
-                    event.key === "Escape"
+                    event.key ===
+                    "Escape"
                 ) {
 
                     closeImage();
