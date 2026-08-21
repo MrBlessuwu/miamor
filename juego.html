@@ -1,69 +1,1923 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#7650d8">
-<title>Juego | Para Marian 💜</title>
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <!-- Hace que el juego se adapte a cualquier pantalla -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#8d5bd9"
+    >
+
+    <title>Atrapa los corazones | Para Marian 💜</title>
+
+    <!-- CSS GENERAL DE TODA LA PÁGINA -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           PÁGINA DEL JUEGO
+           ===================================================== */
+
+        .game-page {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: min(1100px, 94%);
+
+            margin: auto;
+
+            padding-bottom: 80px;
+
+        }
+
+
+        /* =====================================================
+           INTRODUCCIÓN
+           ===================================================== */
+
+        .game-intro {
+
+            min-height: 55vh;
+
+            padding:
+                80px 15px 50px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+        }
+
+
+        .game-intro h1 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(3.8rem, 9vw, 7rem);
+
+            font-weight: 400;
+
+            line-height: .9;
+
+            text-shadow:
+                0 7px 25px
+                rgba(57, 25, 103, .3);
+
+        }
+
+
+        .game-intro p {
+
+            max-width: 650px;
+
+            margin-top: 25px;
+
+            font-size:
+                clamp(1rem, 2vw, 1.15rem);
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           CAJA PRINCIPAL
+           ===================================================== */
+
+        .game-card {
+
+            width:
+                min(900px, 100%);
+
+            margin:
+                auto;
+
+            padding:
+                clamp(20px, 4vw, 35px);
+
+            background:
+                rgba(255, 245, 250, .72);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .65);
+
+            border-radius:
+                30px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(60, 28, 105, .22);
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
+
+        }
+
+
+        /* =====================================================
+           MARCADOR
+           ===================================================== */
+
+        .game-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .stat {
+
+            padding:
+                15px 10px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, .55);
+
+            border-radius:
+                18px;
+
+        }
+
+
+        .stat-label {
+
+            display: block;
+
+            color:
+                var(--violeta-oscuro);
+
+            font-size:
+                .72rem;
+
+            font-weight: bold;
+
+            letter-spacing:
+                .12em;
+
+        }
+
+
+        .stat-value {
+
+            display: block;
+
+            margin-top:
+                5px;
+
+            color:
+                var(--violeta);
+
+            font-size:
+                clamp(1.4rem, 4vw, 2rem);
+
+            font-weight:
+                bold;
+
+        }
+
+
+        /* =====================================================
+           ÁREA DE JUEGO
+           ===================================================== */
+
+        #gameArea {
+
+            position: relative;
+
+            width: 100%;
+
+            /*
+             * Usamos min-height en vez de una altura fija.
+             * Así funciona mejor en pantallas diferentes.
+             */
+
+            min-height:
+                clamp(420px, 65vh, 650px);
+
+            overflow: hidden;
+
+            border-radius:
+                24px;
+
+            background:
+
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,255,255,.45),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    rgba(245,168,200,.45),
+                    rgba(141,91,217,.48)
+                );
+
+            border:
+                2px solid
+                rgba(255,255,255,.5);
+
+            box-shadow:
+                inset
+                0 0 40px
+                rgba(255,255,255,.18);
+
+            /*
+             * MUY IMPORTANTE PARA CELULAR:
+             *
+             * Evita que el navegador interprete
+             * un toque como desplazamiento mientras
+             * se está jugando.
+             */
+
+            touch-action:
+                none;
+
+        }
+
+
+        /* =====================================================
+           MENSAJE ANTES DE COMENZAR
+           ===================================================== */
+
+        .game-start-screen {
+
+            position: absolute;
+
+            z-index: 20;
+
+            inset: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                25px;
+
+            text-align: center;
+
+            background:
+                rgba(57,32,96,.72);
+
+            color: white;
+
+            backdrop-filter:
+                blur(8px);
+
+            -webkit-backdrop-filter:
+                blur(8px);
+
+        }
+
+
+        .game-start-screen h2 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(2.8rem, 7vw, 5rem);
+
+            font-weight: 400;
+
+            line-height: 1;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .game-start-screen p {
+
+            max-width:
+                550px;
+
+            line-height:
+                1.7;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        /* =====================================================
+           BOTONES
+           ===================================================== */
+
+        .game-button {
+
+            border:
+                none;
+
+            padding:
+                14px 28px;
+
+            border-radius:
+                50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4a8c8,
+                    #8d5bd9
+                );
+
+            color:
+                white;
+
+            font-size:
+                1rem;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(75,35,120,.25);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        .game-button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.03);
+
+            box-shadow:
+                0 15px 30px
+                rgba(75,35,120,.35);
+
+        }
+
+
+        .game-button:active {
+
+            transform:
+                scale(.96);
+
+        }
+
+
+        /* =====================================================
+           CORAZÓN DEL JUEGO
+           ===================================================== */
+
+        .game-heart {
+
+            position: absolute;
+
+            z-index: 10;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width:
+                clamp(50px, 9vw, 75px);
+
+            height:
+                clamp(50px, 9vw, 75px);
+
+            padding:
+                0;
+
+            border:
+                none;
+
+            background:
+                transparent;
+
+            font-size:
+                clamp(2.5rem, 7vw, 4.2rem);
+
+            line-height:
+                1;
+
+            cursor:
+                pointer;
+
+            user-select:
+                none;
+
+            -webkit-user-select:
+                none;
+
+            touch-action:
+                manipulation;
+
+            filter:
+                drop-shadow(
+                    0 7px 8px
+                    rgba(70,25,100,.25)
+                );
+
+            animation:
+                heartAppear .22s ease-out,
+                heartFloat 1.4s ease-in-out
+                infinite;
+
+        }
+
+
+        .game-heart:hover {
+
+            filter:
+                drop-shadow(
+                    0 10px 14px
+                    rgba(70,25,100,.35)
+                );
+
+        }
+
+
+        @keyframes heartAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(.2)
+                    rotate(-20deg);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    rotate(0deg);
+
+            }
+
+        }
+
+
+        @keyframes heartFloat {
+
+            0%,
+            100% {
+
+                margin-top:
+                    0;
+
+            }
+
+            50% {
+
+                margin-top:
+                    -8px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CORAZÓN ATRAPADO
+           ===================================================== */
+
+        .heart-caught {
+
+            position: absolute;
+
+            z-index: 30;
+
+            pointer-events:
+                none;
+
+            font-size:
+                2rem;
+
+            animation:
+                caughtAnimation .55s
+                ease-out forwards;
+
+        }
+
+
+        @keyframes caughtAnimation {
+
+            0% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    scale(1.8)
+                    translateY(-50px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MENSAJE FINAL
+           ===================================================== */
+
+        .game-result {
+
+            display: none;
+
+            margin-top:
+                25px;
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            color:
+                white;
+
+            background:
+                rgba(57,32,96,.78);
+
+            border-radius:
+                25px;
+
+            box-shadow:
+                0 20px 45px
+                rgba(48,20,91,.2);
+
+        }
+
+
+        .game-result.show {
+
+            display:
+                block;
+
+            animation:
+                resultAppear .7s
+                ease forwards;
+
+        }
+
+
+        @keyframes resultAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(20px)
+                    scale(.97);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        .game-result h2 {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size:
+                clamp(2.5rem, 6vw, 4.5rem);
+
+            font-weight:
+                400;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .game-result p {
+
+            max-width:
+                650px;
+
+            margin:
+                10px auto;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           INSTRUCCIONES
+           ===================================================== */
+
+        .game-instructions {
+
+            margin-top:
+                25px;
+
+            text-align:
+                center;
+
+            color:
+                var(--violeta-oscuro);
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =====================================================
+           TABLET
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .game-intro {
+
+                min-height:
+                    50vh;
+
+            }
+
+
+            #gameArea {
+
+                min-height:
+                    55vh;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR
+           ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .game-page {
+
+                width:
+                    96%;
+
+            }
+
+
+            .game-intro {
+
+                padding:
+                    60px 10px 35px;
+
+            }
+
+
+            .game-intro h1 {
+
+                font-size:
+                    clamp(3.4rem, 15vw, 5rem);
+
+            }
+
+
+            .game-card {
+
+                padding:
+                    12px;
+
+                border-radius:
+                    22px;
+
+            }
+
+
+            .game-stats {
+
+                gap:
+                    7px;
+
+            }
+
+
+            .stat {
+
+                padding:
+                    11px 5px;
+
+                border-radius:
+                    13px;
+
+            }
+
+
+            .stat-label {
+
+                font-size:
+                    .62rem;
+
+            }
+
+
+            .stat-value {
+
+                font-size:
+                    1.35rem;
+
+            }
+
+
+            #gameArea {
+
+                min-height:
+                    60vh;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .game-start-screen {
+
+                padding:
+                    18px;
+
+            }
+
+
+            .game-start-screen h2 {
+
+                font-size:
+                    clamp(2.7rem, 13vw, 4rem);
+
+            }
+
+
+            .game-start-screen p {
+
+                font-size:
+                    .92rem;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PANTALLAS MUY PEQUEÑAS
+           ===================================================== */
+
+        @media (max-width: 360px) {
+
+            #gameArea {
+
+                min-height:
+                    500px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ACCESIBILIDAD
+           ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .game-heart,
+            .heart-caught,
+            .game-result {
+
+                animation:
+                    none;
+
+            }
+
+        }
+
+    </style>
 
 </head>
-<body>
-<div class="site-shell">
-  <div class="browser-dots"><span></span><span></span><span></span></div>
-  <main class="page-card">
-    <header class="nav">
-  <a class="logo" href="index.html">M</a>
-  <nav class="nav-links">
-    <a href="index.html">INICIO</a>
-    <a href="historia.html">HISTORIA</a>
-    <a href="galeria.html">GALERÍA</a>
-    <a href="juego.html">JUEGO</a>
-    <a href="bromitas.html">BROMITAS</a>
-    <a href="atajos.html">ATAJOS</a>
-    <a href="contacto.html">CONTACTO</a>
-  </nav>
-</header>
-    
-<section class="section">
-  <div class="section-title"><div class="small">Capítulo 03</div><h1>Atrapa corazones</h1><p>Haz clic en los corazones antes de que desaparezcan. ¿Puedes superar tu récord?</p></div>
-  <div class="game-wrap">
-    <div class="scoreboard"><span>Puntos: <b id="score">0</b></span><span>Récord: <b id="best">0</b></span><span>Tiempo: <b id="time">20</b>s</span></div>
-    <div id="gameBoard" class="game-board"></div>
-    <button id="startGame" class="btn dark" style="margin-top:22px">💖 Empezar juego</button>
-    <p id="gameMessage" style="margin-top:18px;font-weight:bold"></p>
-  </div>
-</section>
-<script>
-const board=document.querySelector("#gameBoard"), start=document.querySelector("#startGame");
-const scoreEl=document.querySelector("#score"), bestEl=document.querySelector("#best"), timeEl=document.querySelector("#time"), msg=document.querySelector("#gameMessage");
-let score=0,time=20,playing=false,spawnTimer,clockTimer;
-bestEl.textContent=localStorage.getItem("marianBest")||0;
-function spawnHeart(){
-  if(!playing)return;
-  const h=document.createElement("button"); h.className="game-heart"; h.textContent=["💖","💗","💜","💕"][Math.floor(Math.random()*4)];
-  h.style.left=(5+Math.random()*88)+"%"; h.style.bottom="-10px";
-  h.style.animationDuration=(1.7+Math.random()*1.5)+"s";
-  h.onclick=()=>{score++;scoreEl.textContent=score;h.remove()};
-  board.appendChild(h);setTimeout(()=>h.remove(),3300);
-}
-function endGame(){
-  playing=false;clearInterval(spawnTimer);clearInterval(clockTimer);
-  const best=Math.max(score,Number(localStorage.getItem("marianBest")||0));
-  localStorage.setItem("marianBest",best);bestEl.textContent=best;
-  msg.textContent=score>=15?"¡Marian, eso estuvo peligrosamente bueno! 💜":score>=8?"Nada mal... pero puedes hacerlo mejor 😏":"El amor distrae. Inténtalo otra vez. 😂";
-}
-start.onclick=()=>{
-  if(playing)return; playing=true;score=0;time=20;scoreEl.textContent=0;timeEl.textContent=time;msg.textContent="";
-  spawnTimer=setInterval(spawnHeart,450);
-  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;if(time<=0)endGame()},1000);
-};
-</script>
 
-  </main>
-  <footer class="footer">Hecho con cariño, bromas internas y demasiados corazones. 💖</footer>
-</div>
-<div class="toast"></div>
-<script src="script.js"></script>
+
+<body>
+
+
+    <!-- =====================================================
+         CORAZONES DEL FONDO
+         ===================================================== -->
+
+    <div
+        class="heart-background"
+        aria-hidden="true"
+    >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-1"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-2"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-3"
+        >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-4"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-5"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-6"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
+
+    <header class="navbar">
+
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            M
+        </a>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+        >
+
+            <a href="index.html">
+                INICIO
+            </a>
+
+
+            <a href="historia.html">
+                HISTORIA
+            </a>
+
+
+            <a href="galeria.html">
+                GALERÍA
+            </a>
+
+
+            <a
+                href="juego.html"
+                class="active"
+            >
+                JUEGO
+            </a>
+
+
+            <a href="bromitas.html">
+                BROMITAS
+            </a>
+
+
+            <a href="atajos.html">
+                ATAJOS
+            </a>
+
+
+            <a href="contacto.html">
+                CONTACTO
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO DEL JUEGO
+         ===================================================== -->
+
+    <main class="game-page">
+
+
+        <!-- INTRO -->
+
+        <section class="game-intro">
+
+            <p class="tiny-title">
+                CAPÍTULO 03 · JUGUEMOS
+            </p>
+
+
+            <h1>
+                Atrapa los<br>
+                corazones 💜
+            </h1>
+
+
+            <p>
+                Marian, tienes una misión:
+                atrapar todos los corazones que puedas.
+                Pero cuidado... desaparecen rápido. 👀
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             JUEGO
+             ================================================= -->
+
+        <section class="game-card">
+
+
+            <!-- MARCADOR -->
+
+            <div class="game-stats">
+
+
+                <div class="stat">
+
+                    <span class="stat-label">
+                        PUNTOS
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="score"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-label">
+                        TIEMPO
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="time"
+                    >
+                        30
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-label">
+                        RÉCORD
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="bestScore"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ÁREA DEL JUEGO -->
+
+            <div id="gameArea">
+
+
+                <!-- PANTALLA DE INICIO -->
+
+                <div
+                    class="game-start-screen"
+                    id="startScreen"
+                >
+
+                    <h2>
+                        ¿Lista? 💗
+                    </h2>
+
+
+                    <p>
+                        Toca el botón y tendrás
+                        <strong>30 segundos</strong>
+                        para atrapar todos los corazones
+                        que puedas.
+                    </p>
+
+
+                    <button
+                        class="game-button"
+                        id="startButton"
+                    >
+                        ¡Empezar! 💜
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RESULTADO -->
+
+            <div
+                class="game-result"
+                id="gameResult"
+            >
+
+                <h2>
+                    ¡Terminaste! 💗
+                </h2>
+
+
+                <p>
+                    Conseguíste
+                    <strong id="finalScore">
+                        0
+                    </strong>
+                    corazones.
+                </p>
+
+
+                <p id="resultMessage">
+                    Pero creo que todavía
+                    puedes atrapar más. 👀
+                </p>
+
+
+                <button
+                    class="game-button"
+                    id="restartButton"
+                >
+                    Jugar otra vez 💜
+                </button>
+
+            </div>
+
+
+            <p class="game-instructions">
+
+                💻 Computadora:
+                haz clic en los corazones.
+
+                <br>
+
+                📱 Celular o tablet:
+                tócalos.
+
+            </p>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT DEL MENÚ Y DEL JUEGO
+         ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           MENÚ RESPONSIVE
+           ================================================= */
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        const navLinks =
+            document.getElementById(
+                "navLinks"
+            );
+
+
+        menuButton.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+                menuButton.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                ".nav-links a"
+            )
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "open"
+                        );
+
+                        menuButton.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =================================================
+           ELEMENTOS DEL JUEGO
+           ================================================= */
+
+        const gameArea =
+            document.getElementById(
+                "gameArea"
+            );
+
+
+        const startScreen =
+            document.getElementById(
+                "startScreen"
+            );
+
+
+        const startButton =
+            document.getElementById(
+                "startButton"
+            );
+
+
+        const restartButton =
+            document.getElementById(
+                "restartButton"
+            );
+
+
+        const gameResult =
+            document.getElementById(
+                "gameResult"
+            );
+
+
+        const scoreElement =
+            document.getElementById(
+                "score"
+            );
+
+
+        const timeElement =
+            document.getElementById(
+                "time"
+            );
+
+
+        const bestScoreElement =
+            document.getElementById(
+                "bestScore"
+            );
+
+
+        const finalScoreElement =
+            document.getElementById(
+                "finalScore"
+            );
+
+
+        const resultMessage =
+            document.getElementById(
+                "resultMessage"
+            );
+
+
+        /* =================================================
+           VARIABLES
+           ================================================= */
+
+        let score = 0;
+
+        let timeLeft = 30;
+
+        let gameRunning = false;
+
+        let timer = null;
+
+        let heartTimer = null;
+
+        let currentHeart = null;
+
+
+        /* =================================================
+           RÉCORD
+           ================================================= */
+
+        /*
+         * localStorage guarda el récord solamente
+         * en el navegador de la persona.
+         *
+         * No necesitamos servidor.
+         */
+
+        let bestScore =
+            Number(
+                localStorage.getItem(
+                    "marianBestScore"
+                )
+            ) || 0;
+
+
+        bestScoreElement.textContent =
+            bestScore;
+
+
+        /* =================================================
+           INICIAR JUEGO
+           ================================================= */
+
+        function startGame() {
+
+
+            /* Reiniciar variables */
+
+            score = 0;
+
+            timeLeft = 30;
+
+            gameRunning = true;
+
+
+            /* Actualizar pantalla */
+
+            scoreElement.textContent =
+                score;
+
+            timeElement.textContent =
+                timeLeft;
+
+
+            /* Ocultar resultado */
+
+            gameResult.classList.remove(
+                "show"
+            );
+
+
+            /* Ocultar pantalla inicial */
+
+            startScreen.style.display =
+                "none";
+
+
+            /* Eliminar corazón anterior */
+
+            removeHeart();
+
+
+            /*
+             * Limpiar timers por seguridad.
+             */
+
+            clearInterval(timer);
+
+            clearTimeout(heartTimer);
+
+
+            /* Crear primer corazón */
+
+            spawnHeart();
+
+
+            /*
+             * Aparece un corazón nuevo
+             * aproximadamente cada 750 ms.
+             */
+
+            heartTimer =
+                setInterval(
+                    spawnHeart,
+                    750
+                );
+
+
+            /*
+             * Cuenta regresiva.
+             */
+
+            timer =
+                setInterval(
+                    () => {
+
+                        timeLeft--;
+
+                        timeElement.textContent =
+                            timeLeft;
+
+
+                        if (
+                            timeLeft <= 0
+                        ) {
+
+                            endGame();
+
+                        }
+
+                    },
+                    1000
+                );
+
+        }
+
+
+        /* =================================================
+           CREAR CORAZÓN
+           ================================================= */
+
+        function spawnHeart() {
+
+
+            if (
+                !gameRunning
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * Si ya existe uno,
+             * lo quitamos.
+             */
+
+            removeHeart();
+
+
+            const heart =
+                document.createElement(
+                    "button"
+                );
+
+
+            heart.type =
+                "button";
+
+
+            heart.className =
+                "game-heart";
+
+
+            heart.textContent =
+                "💖";
+
+
+            heart.setAttribute(
+                "aria-label",
+                "Atrapar corazón"
+            );
+
+
+            /*
+             * Tamaño del corazón.
+             */
+
+            const heartSize =
+                Math.min(
+                    75,
+                    Math.max(
+                        50,
+                        gameArea.clientWidth *
+                        0.09
+                    )
+                );
+
+
+            /*
+             * Posición aleatoria.
+             *
+             * Dejamos espacio para que
+             * nunca aparezca cortado.
+             */
+
+            const maxX =
+                gameArea.clientWidth -
+                heartSize -
+                10;
+
+
+            const maxY =
+                gameArea.clientHeight -
+                heartSize -
+                10;
+
+
+            const x =
+                Math.max(
+                    10,
+                    Math.random() *
+                    maxX
+                );
+
+
+            const y =
+                Math.max(
+                    10,
+                    Math.random() *
+                    maxY
+                );
+
+
+            heart.style.left =
+                `${x}px`;
+
+
+            heart.style.top =
+                `${y}px`;
+
+
+            /*
+             * Cuando se toca o se hace clic:
+             * suma un punto.
+             */
+
+            heart.addEventListener(
+                "pointerdown",
+                catchHeart
+            );
+
+
+            gameArea.appendChild(
+                heart
+            );
+
+
+            currentHeart =
+                heart;
+
+
+            /*
+             * Si no lo atrapan,
+             * desaparece después de un momento.
+             */
+
+            setTimeout(
+                () => {
+
+                    if (
+                        currentHeart ===
+                        heart
+                    ) {
+
+                        removeHeart();
+
+                    }
+
+                },
+                1000
+            );
+
+        }
+
+
+        /* =================================================
+           ATRAPAR CORAZÓN
+           ================================================= */
+
+        function catchHeart(
+            event
+        ) {
+
+
+            event.preventDefault();
+
+
+            if (
+                !gameRunning
+            ) {
+
+                return;
+
+            }
+
+
+            const heart =
+                event.currentTarget;
+
+
+            /*
+             * Evitar doble toque.
+             */
+
+            if (
+                heart.dataset.caught ===
+                "true"
+            ) {
+
+                return;
+
+            }
+
+
+            heart.dataset.caught =
+                "true";
+
+
+            /* Sumar punto */
+
+            score++;
+
+
+            scoreElement.textContent =
+                score;
+
+
+            /*
+             * Crear pequeño efecto
+             * visual donde estaba
+             * el corazón.
+             */
+
+            createCatchEffect(
+                heart
+            );
+
+
+            /*
+             * Quitar corazón.
+             */
+
+            if (
+                currentHeart ===
+                heart
+            ) {
+
+                currentHeart =
+                    null;
+
+            }
+
+
+            heart.remove();
+
+        }
+
+
+        /* =================================================
+           EFECTO AL ATRAPAR
+           ================================================= */
+
+        function createCatchEffect(
+            heart
+        ) {
+
+
+            const effect =
+                document.createElement(
+                    "span"
+                );
+
+
+            effect.className =
+                "heart-caught";
+
+
+            effect.textContent =
+                "+1 💗";
+
+
+            effect.style.left =
+                heart.style.left;
+
+
+            effect.style.top =
+                heart.style.top;
+
+
+            gameArea.appendChild(
+                effect
+            );
+
+
+            setTimeout(
+                () => {
+
+                    effect.remove();
+
+                },
+                600
+            );
+
+        }
+
+
+        /* =================================================
+           ELIMINAR CORAZÓN
+           ================================================= */
+
+        function removeHeart() {
+
+
+            if (
+                currentHeart
+            ) {
+
+                currentHeart.remove();
+
+                currentHeart =
+                    null;
+
+            }
+
+        }
+
+
+        /* =================================================
+           TERMINAR JUEGO
+           ================================================= */
+
+        function endGame() {
+
+
+            gameRunning =
+                false;
+
+
+            clearInterval(
+                timer
+            );
+
+
+            clearInterval(
+                heartTimer
+            );
+
+
+            clearTimeout(
+                heartTimer
+            );
+
+
+            removeHeart();
+
+
+            /*
+             * Mostrar puntuación.
+             */
+
+            finalScoreElement.textContent =
+                score;
+
+
+            /*
+             * Guardar récord.
+             */
+
+            if (
+                score >
+                bestScore
+            ) {
+
+                bestScore =
+                    score;
+
+
+                localStorage.setItem(
+                    "marianBestScore",
+                    bestScore
+                );
+
+
+                bestScoreElement.textContent =
+                    bestScore;
+
+
+                resultMessage.textContent =
+                    "¡¡Nuevo récord!! Sabía que podías hacerlo. 😭💜";
+
+            }
+
+            else if (
+                score >= 25
+            ) {
+
+                resultMessage.textContent =
+                    "¡¿25 o más?! Marian, oficialmente eres peligrosa atrapando corazones. 😂💜";
+
+            }
+
+            else if (
+                score >= 15
+            ) {
+
+                resultMessage.textContent =
+                    "Nada mal... aunque todavía quedan corazones por atrapar. 👀💗";
+
+            }
+
+            else if (
+                score >= 8
+            ) {
+
+                resultMessage.textContent =
+                    "Bueno, bueno... vas aprendiendo. 😌💜";
+
+            }
+
+            else {
+
+                resultMessage.textContent =
+                    "Creo que estabas demasiado ocupada siendo preciosa. Te perdono. 😂💗";
+
+            }
+
+
+            /*
+             * Mostrar resultado.
+             */
+
+            gameResult.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* =================================================
+           BOTONES
+           ================================================= */
+
+        startButton.addEventListener(
+            "click",
+            startGame
+        );
+
+
+        restartButton.addEventListener(
+            "click",
+            startGame
+        );
+
+
+        /* =================================================
+           SEGURIDAD PARA CAMBIAR ORIENTACIÓN
+           ================================================= */
+
+        window.addEventListener(
+            "resize",
+            () => {
+
+                /*
+                 * Si el teléfono cambia de
+                 * vertical a horizontal,
+                 * quitamos el corazón actual.
+                 *
+                 * El siguiente aparecerá
+                 * correctamente colocado.
+                 */
+
+                if (
+                    gameRunning
+                ) {
+
+                    removeHeart();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
 </body>
+
 </html>
+```
+
