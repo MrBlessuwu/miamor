@@ -1,48 +1,979 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#7650d8">
-<title>Historia | Para Marian 💜</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
 
+    <!-- Hace que la página se adapte a celular, tablet y computadora -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#8d5bd9">
+
+    <title>Nuestra historia | Para Marian 💜</title>
+
+    <!-- Nuestro CSS principal -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================================
+           HISTORIA
+           ===================================================== */
+
+        .history-page {
+            position: relative;
+            z-index: 2;
+            width: min(1100px, 94%);
+            margin: auto;
+        }
+
+        /* =====================================================
+           INTRODUCCIÓN
+           ===================================================== */
+
+        .history-intro {
+            min-height: 78vh;
+            padding: 90px 20px 80px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .history-intro h1,
+        .memory-text h2,
+        .love-card h2,
+        .ending-card .big-ending {
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-weight: 400;
+        }
+
+        .history-intro h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: .92;
+
+            text-shadow:
+                0 7px 25px rgba(57, 25, 103, .25);
+        }
+
+        .history-intro .line {
+            width: 65px;
+            height: 2px;
+
+            margin: 30px auto;
+
+            background: white;
+        }
+
+        .history-text {
+            width: min(720px, 100%);
+
+            margin: 9px auto;
+
+            font-size:
+                clamp(1rem, 2vw, 1.18rem);
+
+            line-height: 1.8;
+
+            text-shadow:
+                0 2px 8px rgba(54, 23, 91, .15);
+        }
+
+        /* =====================================================
+           FRASE PRINCIPAL
+           ===================================================== */
+
+        .love-section {
+            padding: 50px 0 110px;
+        }
+
+        .love-card {
+            width: min(850px, 100%);
+
+            margin: auto;
+
+            padding:
+                clamp(30px, 6vw, 65px);
+
+            text-align: center;
+
+            color: var(--texto);
+
+            background:
+                rgba(255, 245, 250, .72);
+
+            border:
+                1px solid rgba(255, 255, 255, .65);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 25px 60px rgba(60, 28, 105, .2);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .9s ease,
+                transform .9s ease;
+        }
+
+        .love-card.visible {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        .love-number {
+            color: var(--violeta);
+
+            font-size: .75rem;
+
+            font-weight: bold;
+
+            letter-spacing: .2em;
+        }
+
+        .love-card h2 {
+            color: var(--violeta-oscuro);
+
+            font-size:
+                clamp(2.5rem, 5vw, 4.5rem);
+
+            line-height: 1;
+
+            margin:
+                18px 0 25px;
+        }
+
+        .love-card p {
+            max-width: 680px;
+
+            margin:
+                16px auto;
+
+            font-size:
+                clamp(1rem, 2vw, 1.13rem);
+
+            line-height: 1.8;
+        }
+
+        .little-heart {
+            margin-top: 28px;
+
+            color: var(--rosa-fuerte);
+
+            font-size: 3rem;
+
+            animation:
+                littlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes littlePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        /* =====================================================
+           SECCIONES DE RECUERDOS
+           ===================================================== */
+
+        .memory-section {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            align-items: center;
+
+            gap:
+                clamp(30px, 6vw, 75px);
+
+            padding:
+                75px 3%;
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .9s ease,
+                transform .9s ease;
+        }
+
+        .memory-section.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        .memory-text {
+            padding: 15px;
+        }
+
+        .memory-label {
+
+            display: block;
+
+            margin-bottom: 15px;
+
+            color: white;
+
+            font-size: .73rem;
+
+            font-weight: bold;
+
+            letter-spacing: .2em;
+        }
+
+        .memory-text h2 {
+
+            color: white;
+
+            font-size:
+                clamp(2.5rem, 5vw, 4.2rem);
+
+            line-height: 1;
+
+            text-shadow:
+                0 5px 18px rgba(56, 24, 100, .25);
+        }
+
+        .memory-text p {
+
+            margin-top: 20px;
+
+            color: white;
+
+            font-size:
+                clamp(1rem, 1.7vw, 1.12rem);
+
+            line-height: 1.8;
+
+            text-shadow:
+                0 2px 8px rgba(54, 23, 91, .15);
+        }
+
+        .memory-caption {
+
+            font-style: italic;
+
+            opacity: .9;
+        }
+
+        /* =====================================================
+           VIDEOS
+           ===================================================== */
+
+        .video-card {
+
+            padding: 12px;
+
+            background:
+                rgba(255, 255, 255, .28);
+
+            border:
+                1px solid rgba(255, 255, 255, .5);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 45px rgba(60, 28, 105, .22);
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .memory-video {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 100%;
+
+            height: auto;
+
+            max-height: 600px;
+
+            border-radius: 17px;
+
+            background:
+                #392060;
+
+            object-fit: contain;
+        }
+
+        .video-note {
+
+            margin:
+                13px 7px 3px;
+
+            color: white;
+
+            text-align: center;
+
+            font-size: .9rem;
+
+            line-height: 1.4;
+        }
+
+        /* =====================================================
+           CIERRE
+           ===================================================== */
+
+        .history-ending {
+
+            padding:
+                110px 0 100px;
+        }
+
+        .ending-card {
+
+            width:
+                min(850px, 100%);
+
+            margin: auto;
+
+            padding:
+                clamp(35px, 7vw, 70px);
+
+            text-align: center;
+
+            background:
+                rgba(57, 32, 96, .65);
+
+            border:
+                1px solid rgba(255, 255, 255, .25);
+
+            border-radius: 30px;
+
+            color: white;
+
+            box-shadow:
+                0 25px 60px rgba(48, 20, 91, .25);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .9s ease,
+                transform .9s ease;
+        }
+
+        .ending-card.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        .quote-mark {
+
+            font-family: Georgia, serif;
+
+            font-size: 5rem;
+
+            line-height: .5;
+
+            opacity: .45;
+        }
+
+        .ending-card p {
+
+            margin:
+                18px auto;
+
+            max-width: 700px;
+
+            line-height: 1.8;
+
+            font-size: 1.05rem;
+        }
+
+        .ending-card .big-ending {
+
+            font-size:
+                clamp(2.4rem, 5vw, 4.2rem);
+
+            line-height: 1.05;
+        }
+
+        .ending-heart {
+
+            margin-top: 25px;
+
+            font-size: 2.5rem;
+        }
+
+        .history-footer {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 35px 15px;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: .9rem;
+        }
+
+        /* =====================================================
+           TABLET
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .memory-section {
+
+                grid-template-columns: 1fr;
+
+                padding:
+                    55px 3%;
+            }
+
+        }
+
+        /* =====================================================
+           CELULAR
+           ===================================================== */
+
+        @media (max-width: 650px) {
+
+            .history-page {
+                width: 96%;
+            }
+
+            .history-intro {
+
+                min-height: 70vh;
+
+                padding:
+                    65px 12px 55px;
+            }
+
+            .history-intro h1 {
+
+                font-size:
+                    clamp(3rem, 14vw, 4.5rem);
+            }
+
+            .history-text {
+
+                font-size: .98rem;
+
+                line-height: 1.7;
+            }
+
+            .love-section,
+            .history-ending {
+
+                padding-top: 35px;
+
+                padding-bottom: 70px;
+            }
+
+            .love-card {
+
+                border-radius: 22px;
+            }
+
+            .memory-text h2 {
+
+                font-size:
+                    clamp(2.5rem, 12vw, 4rem);
+            }
+
+            .memory-video {
+
+                border-radius: 13px;
+            }
+
+        }
+    </style>
 </head>
-<body>
-<div class="site-shell">
-  <div class="browser-dots"><span></span><span></span><span></span></div>
-  <main class="page-card">
-    <header class="nav">
-  <a class="logo" href="index.html">M</a>
-  <nav class="nav-links">
-    <a href="index.html">INICIO</a>
-    <a href="historia.html">HISTORIA</a>
-    <a href="galeria.html">GALERÍA</a>
-    <a href="juego.html">JUEGO</a>
-    <a href="bromitas.html">BROMITAS</a>
-    <a href="atajos.html">ATAJOS</a>
-    <a href="contacto.html">CONTACTO</a>
-  </nav>
-</header>
-    
-<section class="section">
-  <div class="section-title">
-    <div class="small">Capítulo 01</div>
-    <h1>Nuestra historia</h1>
-    <p>Una línea de tiempo que puedes personalizar con nuestros momentos reales.</p>
-  </div>
-  <div class="timeline">
-    <article class="timeline-item"><span class="timeline-dot"></span><div class="card"><div class="timeline-date">El comienzo</div><h3>Cuando todo empezó 💗</h3><p>Escribe aquí cómo se conocieron y qué recuerdas de ese día.</p></div></article>
-    <article class="timeline-item"><span class="timeline-dot"></span><div class="card"><div class="timeline-date">Primer recuerdo</div><h3>Ese momento que no olvido</h3><p>Agrega aquí una anécdota, una conversación o una pequeña locura.</p></div></article>
-    <article class="timeline-item"><span class="timeline-dot"></span><div class="card"><div class="timeline-date">Hoy</div><h3>Seguimos escribiendo</h3><p>Porque la historia no termina en una fecha: todavía quedan capítulos.</p></div></article>
-    <article class="timeline-item"><span class="timeline-dot"></span><div class="card"><div class="timeline-date">Próximo capítulo</div><h3>El futuro 🌙</h3><p>Viajes, metas, aventuras, risas y todas esas cosas que todavía faltan.</p></div></article>
-  </div>
-</section>
 
-  </main>
-  <footer class="footer">Hecho con cariño, bromas internas y demasiados corazones. 💖</footer>
-</div>
-<div class="toast"></div>
-<script src="script.js"></script>
+
+<body>
+
+    <!-- =====================================================
+         CORAZONES DEL FONDO
+         ===================================================== -->
+
+    <div class="heart-background" aria-hidden="true">
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-1"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-2"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-3"
+        >
+
+        <img
+            src="assets/img/corazon1.png"
+            alt=""
+            class="heart heart-4"
+        >
+
+        <img
+            src="assets/img/corazon2.png"
+            alt=""
+            class="heart heart-5"
+        >
+
+        <img
+            src="assets/img/corazon3.png"
+            alt=""
+            class="heart heart-6"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            M
+        </a>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+        >
+
+            <a href="index.html">
+                INICIO
+            </a>
+
+            <a
+                href="historia.html"
+                class="active"
+            >
+                HISTORIA
+            </a>
+
+            <a href="galeria.html">
+                GALERÍA
+            </a>
+
+            <a href="juego.html">
+                JUEGO
+            </a>
+
+            <a href="bromitas.html">
+                BROMITAS
+            </a>
+
+            <a href="atajos.html">
+                ATAJOS
+            </a>
+
+            <a href="contacto.html">
+                CONTACTO
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         HISTORIA
+         ===================================================== -->
+
+    <main class="history-page">
+
+
+        <!-- INTRO -->
+
+        <section class="history-intro">
+
+            <p class="tiny-title">
+                CAPÍTULO 01 · NUESTRA HISTORIA
+            </p>
+
+            <h1>
+                Tal vez no sea<br>
+                nuestro momento...
+            </h1>
+
+            <div class="line"></div>
+
+            <p class="history-text">
+                Yo sé que siempre me recuerdas que talvez
+                no es nuestro tiempo de amarnos.
+            </p>
+
+            <p class="history-text">
+                Pero yo creo en algo:
+                <strong>
+                    el amor vive en cada día.
+                </strong>
+            </p>
+
+            <p class="history-text">
+                Y si no es nuestro tiempo...
+                pues yo no lo creo.
+            </p>
+
+        </section>
+
+
+        <!-- IDEA PRINCIPAL -->
+
+        <section class="love-section">
+
+            <div class="love-card">
+
+                <div class="love-number">
+                    01
+                </div>
+
+                <h2>
+                    Porque el amor no se ve
+                    cuando todo está bien.
+                </h2>
+
+                <p>
+                    El amor también aparece cuando hay lluvia
+                    y lamentos. Cuando las cosas no salen
+                    exactamente como uno esperaba.
+                </p>
+
+                <p>
+                    Porque así nacen momentos especiales
+                    y únicos.
+                </p>
+
+                <p>
+                    Por eso, para mí, las experiencias y los
+                    momentos se disfrutan todavía más en un
+                    <em>“mal momento”</em>.
+                </p>
+
+                <div class="little-heart">
+                    ♡
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MOMENTO 1
+             ================================================= -->
+
+        <section class="memory-section">
+
+            <div class="memory-text">
+
+                <span class="memory-label">
+                    MOMENTO 01 · BAJO LA LLUVIA
+                </span>
+
+                <h2>
+                    Como aquella vez que nos
+                    besamos en la lluvia. 🌧️💜
+                </h2>
+
+                <p>
+                    Puede que no haya sido el momento más
+                    perfecto, pero precisamente por eso
+                    se convirtió en uno de esos momentos
+                    que no se olvidan.
+                </p>
+
+                <p class="memory-caption">
+                    Algunas historias bonitas no necesitan
+                    un día soleado.
+                </p>
+
+            </div>
+
+
+            <div class="video-card">
+
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    class="memory-video"
+                >
+
+                    <source
+                        src="assets/video/video1.mp4"
+                        type="video/mp4"
+                    >
+
+                    Tu navegador no puede reproducir
+                    este video.
+
+                </video>
+
+                <p class="video-note">
+                    🎬 Nuestro momento bajo la lluvia
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MOMENTO 2
+             ================================================= -->
+
+        <section class="memory-section">
+
+            <div class="video-card">
+
+                <video
+                    controls
+                    playsinline
+                    preload="metadata"
+                    class="memory-video"
+                >
+
+                    <source
+                        src="assets/video/video2.mp4"
+                        type="video/mp4"
+                    >
+
+                    Tu navegador no puede reproducir
+                    este video.
+
+                </video>
+
+                <p class="video-note">
+                    🎬 Las gomitas y nosotros intentando
+                    promocionarlas 😂
+                </p>
+
+            </div>
+
+
+            <div class="memory-text">
+
+                <span class="memory-label">
+                    MOMENTO 02 · LAS GOMITAS
+                </span>
+
+                <h2>
+                    O cuando nos pusimos a bailar
+                    para promocionar nuestras gomitas. 🍬😂
+                </h2>
+
+                <p>
+                    Porque aparentemente nosotros también
+                    somos capaces de convertir una simple
+                    promoción de gomitas en un recuerdo
+                    que termina siendo mucho más importante.
+                </p>
+
+                <p>
+                    Y eso es precisamente lo que me gusta:
+                    <strong>
+                        hacer momentos contigo,
+                        incluso cuando el momento parece
+                        cualquier cosa.
+                    </strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CIERRE
+             ================================================= -->
+
+        <section class="history-ending">
+
+            <div class="ending-card">
+
+                <div class="quote-mark">
+                    “
+                </div>
+
+                <p>
+                    Así que sí...
+                </p>
+
+                <p class="big-ending">
+                    Por mi parte, las experiencias y los
+                    momentos se disfrutan más en
+                    <em>“mal momento”</em>.
+                </p>
+
+                <p>
+                    Porque quizás algún día miremos atrás
+                    y descubramos que aquellos momentos
+                    que parecían no tener sentido fueron
+                    precisamente los que más valieron la pena.
+                </p>
+
+                <div class="ending-heart">
+                    💜
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="history-footer">
+
+        Hecho para guardar recuerdos que merecen quedarse. 💗
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        /* Menú de teléfono */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuButton.addEventListener("click", () => {
+
+            navLinks.classList.toggle("open");
+
+            menuButton.classList.toggle("open");
+
+        });
+
+
+        /* Cerrar menú después de seleccionar una página */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    navLinks.classList.remove("open");
+
+                    menuButton.classList.remove("open");
+
+                });
+
+            });
+
+
+        /* Animaciones al bajar por la página */
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        document
+            .querySelectorAll(
+                ".love-card, .memory-section, .ending-card"
+            )
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+    </script>
+
 </body>
+
 </html>
