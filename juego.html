@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7650d8">
+<title>Juego | Para Marian 💜</title>
+<link rel="stylesheet" href="style.css">
 
+</head>
+<body>
+<div class="site-shell">
+  <div class="browser-dots"><span></span><span></span><span></span></div>
+  <main class="page-card">
+    <header class="nav">
+  <a class="logo" href="index.html">M</a>
+  <nav class="nav-links">
+    <a href="index.html">INICIO</a>
+    <a href="historia.html">HISTORIA</a>
+    <a href="galeria.html">GALERÍA</a>
+    <a href="juego.html">JUEGO</a>
+    <a href="bromitas.html">BROMITAS</a>
+    <a href="atajos.html">ATAJOS</a>
+    <a href="contacto.html">CONTACTO</a>
+  </nav>
+</header>
+    
+<section class="section">
+  <div class="section-title"><div class="small">Capítulo 03</div><h1>Atrapa corazones</h1><p>Haz clic en los corazones antes de que desaparezcan. ¿Puedes superar tu récord?</p></div>
+  <div class="game-wrap">
+    <div class="scoreboard"><span>Puntos: <b id="score">0</b></span><span>Récord: <b id="best">0</b></span><span>Tiempo: <b id="time">20</b>s</span></div>
+    <div id="gameBoard" class="game-board"></div>
+    <button id="startGame" class="btn dark" style="margin-top:22px">💖 Empezar juego</button>
+    <p id="gameMessage" style="margin-top:18px;font-weight:bold"></p>
+  </div>
+</section>
+<script>
+const board=document.querySelector("#gameBoard"), start=document.querySelector("#startGame");
+const scoreEl=document.querySelector("#score"), bestEl=document.querySelector("#best"), timeEl=document.querySelector("#time"), msg=document.querySelector("#gameMessage");
+let score=0,time=20,playing=false,spawnTimer,clockTimer;
+bestEl.textContent=localStorage.getItem("marianBest")||0;
+function spawnHeart(){
+  if(!playing)return;
+  const h=document.createElement("button"); h.className="game-heart"; h.textContent=["💖","💗","💜","💕"][Math.floor(Math.random()*4)];
+  h.style.left=(5+Math.random()*88)+"%"; h.style.bottom="-10px";
+  h.style.animationDuration=(1.7+Math.random()*1.5)+"s";
+  h.onclick=()=>{score++;scoreEl.textContent=score;h.remove()};
+  board.appendChild(h);setTimeout(()=>h.remove(),3300);
+}
+function endGame(){
+  playing=false;clearInterval(spawnTimer);clearInterval(clockTimer);
+  const best=Math.max(score,Number(localStorage.getItem("marianBest")||0));
+  localStorage.setItem("marianBest",best);bestEl.textContent=best;
+  msg.textContent=score>=15?"¡Marian, eso estuvo peligrosamente bueno! 💜":score>=8?"Nada mal... pero puedes hacerlo mejor 😏":"El amor distrae. Inténtalo otra vez. 😂";
+}
+start.onclick=()=>{
+  if(playing)return; playing=true;score=0;time=20;scoreEl.textContent=0;timeEl.textContent=time;msg.textContent="";
+  spawnTimer=setInterval(spawnHeart,450);
+  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;if(time<=0)endGame()},1000);
+};
+</script>
+
+  </main>
+  <footer class="footer">Hecho con cariño, bromas internas y demasiados corazones. 💖</footer>
+</div>
+<div class="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
